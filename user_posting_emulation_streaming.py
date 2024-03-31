@@ -60,7 +60,7 @@ def run_infinite_post_data_loop():
                 user_result = dict(row._mapping)
 
 
-            invoke_url_pin = "https://v8x2736ebl.execute-api.us-east-1.amazonaws.com/Production/streams/streaming-0e06e68acedb-pin/records"
+            invoke_url_pin = "https://v8x2736ebl.execute-api.us-east-1.amazonaws.com/Production/streams/streaming-0e06e68acedb-pin/record"
 
             payload_pin = json.dumps({
     "StreamName": "streaming-0e06e68acedb-pin",
@@ -73,7 +73,7 @@ def run_infinite_post_data_loop():
 })
             
 
-            invoke_url_geo = "https://v8x2736ebl.execute-api.us-east-1.amazonaws.com/Production/streams/streaming-0e06e68acedb-geo/records"
+            invoke_url_geo = "https://v8x2736ebl.execute-api.us-east-1.amazonaws.com/Production/streams/streaming-0e06e68acedb-geo/record"
 
             payload_geo = json.dumps({
     "StreamName": "streaming-0e06e68acedb-geo",
@@ -84,7 +84,7 @@ def run_infinite_post_data_loop():
 })
             
 
-            invoke_url_user = "https://v8x2736ebl.execute-api.us-east-1.amazonaws.com/Production/streams/streaming-0e06e68acedb-user/records"
+            invoke_url_user = "https://v8x2736ebl.execute-api.us-east-1.amazonaws.com/Production/streams/streaming-0e06e68acedb-user/record"
 
             payload_user = json.dumps({
     "StreamName": "streaming-0e06e68acedb-user",
@@ -96,12 +96,10 @@ def run_infinite_post_data_loop():
             
 
 
-        # headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
-
         headers = {'Content-Type': 'application/json'}
-        response_pin = requests.request("POST", invoke_url_pin, headers=headers, data=payload_pin, timeout=30)
-        response_geo = requests.request("POST", invoke_url_geo, headers=headers, data=payload_geo, timeout=30)
-        response_user = requests.request("POST", invoke_url_user, headers=headers, data=payload_user, timeout=30)
+        response_pin = requests.request("PUT", invoke_url_pin, headers=headers, data=payload_pin, timeout=30)
+        response_geo = requests.request("PUT", invoke_url_geo, headers=headers, data=payload_geo, timeout=30)
+        response_user = requests.request("PUT", invoke_url_user, headers=headers, data=payload_user, timeout=30)
 
 
         print(response_pin,response_geo,response_user)
@@ -118,27 +116,3 @@ if __name__ == "__main__":
     print('Working')
 
 
-
-
-# record_df = {"ind":1,"first_name":"Mike","last_name":"Cart","age":37,"date_joined":"2024-03-23 13:00:00"}
-
-# # invoke url for one record, if you want to put more records replace record with records
-# invoke_url = "https://v8x2736ebl.execute-api.us-east-1.amazonaws.com/Production/streams/streaming-0e06e68acedb-user/record"
-# # <stream_name>/record  {stream-name}/record
-
-# #To send JSON messages you need to follow this structure
-# payload = json.dumps({
-#     "StreamName": "streaming-0e06e68acedb-user",
-#     "Data": {
-#             #Data should be send as pairs of column_name:value, with different columns separated by commas
-#             "ind": user_result["ind"], "first_name": user_result["first_name"], "last_name": user_result["last_name"], "age": user_result["age"], "date_joined": user_result["date_joined"].strftime("%Y-%m-%d %H:%M:%S")
-#             },
-#             "PartitionKey": "ind"
-#             })
-
-# headers = {'Content-Type': 'application/json'}
-
-# response = requests.request("PUT", invoke_url, headers=headers, data=payload)
-
-# print(response)
-# print(response.json())
