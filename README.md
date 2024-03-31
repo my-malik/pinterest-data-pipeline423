@@ -63,10 +63,4 @@ The following script user_posting_emulation_streaming.py was used to send reques
 
 A Notebook in Databricks was used to read in the data from the Kinesis Streams, with cleaning operations performed as they were processed. The cleaned data was then written to a Delta Table for each of the streams.
 
-## Usage
 
-Examples and instructions for using the project.
-
-## Features
-
-List of key features.
