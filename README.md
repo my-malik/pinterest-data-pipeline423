@@ -26,8 +26,7 @@ The following Technologies were used:
 - [Milestone 7](#milestone-7)
 - [Milestone 8](#milestone-8)
 - [Milestone 9](#milestone-9)
-- [Usage](#usage)
-- [Features](#features)
+
 
 
 
